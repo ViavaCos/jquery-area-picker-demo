@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picker</title>
+    <link rel="stylesheet" href="./index.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.10.0/jquery.js"></script>
+</head>
+<script src="./index.js"></script>
+
+<script>
+
+
+    function handleClick(){
+        $.dialog({
+            showTitle: true, // 是否展示dialog标题
+            title: '你好，我是标题', // dialog标题文案
+            // lockScroll: false, // 是否锁定滚动
+            closeOnClickModal: false, // 点击模态框是否可关闭dialog
+            showCheckAll: true, // 是否显示全选
+            regionData: window.regionData // 区域数据
+        })
+    }
+
+    function getRegion(){
+        window.regionData = [
+      {
+        "area_id": 9,
+        "area_name": "天津",
+        "parent_area_id": 0,
+        "add_time": 1466565229,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 287,
+            "area_name": "华东",
+            "final": [
+              {
+                "area_id": 2572,
+                "area_name": "保定市"
+              },
+              {
+                "area_id": 3571,
+                "area_name": "白银市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 10,
+        "area_name": "上海",
+        "parent_area_id": 0,
+        "add_time": 1466565230,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 340,
+            "area_name": "东北",
+            "final": [
+              {
+                "area_id": 2137,
+                "area_name": "邢台市"
+              },
+              {
+                "area_id": 4012,
+                "area_name": "大同市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 11,
+        "area_name": "湖北省",
+        "parent_area_id": 0,
+        "add_time": 1466565231,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 464,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2125,
+                "area_name": "和田地区"
+              },
+              {
+                "area_id": 2371,
+                "area_name": "泰州市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 12,
+        "area_name": "河北省",
+        "parent_area_id": 0,
+        "add_time": 1466565232,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 294,
+            "area_name": "华中",
+            "final": [
+              {
+                "area_id": 3351,
+                "area_name": "长治市"
+              },
+              {
+                "area_id": 4694,
+                "area_name": "晋中市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 13,
+        "area_name": "浙江省",
+        "parent_area_id": 0,
+        "add_time": 1466565233,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 357,
+            "area_name": "华北",
+            "final": [
+              {
+                "area_id": 3276,
+                "area_name": "海北藏族自治州"
+              },
+              {
+                "area_id": 3240,
+                "area_name": "泸州市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 14,
+        "area_name": "香港特别行政区",
+        "parent_area_id": 0,
+        "add_time": 1466565234,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 435,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2285,
+                "area_name": "抚顺市"
+              },
+              {
+                "area_id": 4911,
+                "area_name": "邢台市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 15,
+        "area_name": "辽宁省",
+        "parent_area_id": 0,
+        "add_time": 1466565235,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 402,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2604,
+                "area_name": "三沙市"
+              },
+              {
+                "area_id": 4962,
+                "area_name": "天津市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 16,
+        "area_name": "河南省",
+        "parent_area_id": 0,
+        "add_time": 1466565236,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 209,
+            "area_name": "华东",
+            "final": [
+              {
+                "area_id": 2381,
+                "area_name": "温州市"
+              },
+              {
+                "area_id": 3098,
+                "area_name": "新乡市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 17,
+        "area_name": "香港特别行政区",
+        "parent_area_id": 0,
+        "add_time": 1466565237,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 402,
+            "area_name": "华中",
+            "final": [
+              {
+                "area_id": 4630,
+                "area_name": "营口市"
+              },
+              {
+                "area_id": 3554,
+                "area_name": "玉林市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 18,
+        "area_name": "广西壮族自治区",
+        "parent_area_id": 0,
+        "add_time": 1466565238,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 401,
+            "area_name": "西南",
+            "final": [
+              {
+                "area_id": 2962,
+                "area_name": "重庆市"
+              },
+              {
+                "area_id": 3928,
+                "area_name": "海外"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 19,
+        "area_name": "甘肃省",
+        "parent_area_id": 0,
+        "add_time": 1466565239,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 488,
+            "area_name": "东北",
+            "final": [
+              {
+                "area_id": 4796,
+                "area_name": "重庆市"
+              },
+              {
+                "area_id": 3375,
+                "area_name": "塔城地区"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 20,
+        "area_name": "贵州省",
+        "parent_area_id": 0,
+        "add_time": 1466565240,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 497,
+            "area_name": "西北",
+            "final": [
+              {
+                "area_id": 2605,
+                "area_name": "山南地区"
+              },
+              {
+                "area_id": 2792,
+                "area_name": "天水市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 21,
+        "area_name": "青海省",
+        "parent_area_id": 0,
+        "add_time": 1466565241,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 432,
+            "area_name": "华中",
+            "final": [
+              {
+                "area_id": 3422,
+                "area_name": "哈密地区"
+              },
+              {
+                "area_id": 2670,
+                "area_name": "三沙市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 22,
+        "area_name": "宁夏回族自治区",
+        "parent_area_id": 0,
+        "add_time": 1466565242,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 201,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2016,
+                "area_name": "锡林郭勒盟"
+              },
+              {
+                "area_id": 4155,
+                "area_name": "天津市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 23,
+        "area_name": "吉林省",
+        "parent_area_id": 0,
+        "add_time": 1466565243,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 417,
+            "area_name": "华北",
+            "final": [
+              {
+                "area_id": 4162,
+                "area_name": "宿州市"
+              },
+              {
+                "area_id": 3589,
+                "area_name": "西宁市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 24,
+        "area_name": "重庆",
+        "parent_area_id": 0,
+        "add_time": 1466565244,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 411,
+            "area_name": "华中",
+            "final": [
+              {
+                "area_id": 3525,
+                "area_name": "固原市"
+              },
+              {
+                "area_id": 2932,
+                "area_name": "离岛"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 25,
+        "area_name": "上海",
+        "parent_area_id": 0,
+        "add_time": 1466565245,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 498,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 4054,
+                "area_name": "中卫市"
+              },
+              {
+                "area_id": 3935,
+                "area_name": "吴忠市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 26,
+        "area_name": "河南省",
+        "parent_area_id": 0,
+        "add_time": 1466565246,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 485,
+            "area_name": "西南",
+            "final": [
+              {
+                "area_id": 4807,
+                "area_name": "绥化市"
+              },
+              {
+                "area_id": 4599,
+                "area_name": "扬州市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 27,
+        "area_name": "辽宁省",
+        "parent_area_id": 0,
+        "add_time": 1466565247,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 261,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2727,
+                "area_name": "泸州市"
+              },
+              {
+                "area_id": 3759,
+                "area_name": "阿坝藏族羌族自治州"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 28,
+        "area_name": "天津",
+        "parent_area_id": 0,
+        "add_time": 1466565248,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 323,
+            "area_name": "华北",
+            "final": [
+              {
+                "area_id": 4708,
+                "area_name": "海东市"
+              },
+              {
+                "area_id": 2543,
+                "area_name": "泉州市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 29,
+        "area_name": "天津",
+        "parent_area_id": 0,
+        "add_time": 1466565249,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 215,
+            "area_name": "东北",
+            "final": [
+              {
+                "area_id": 2060,
+                "area_name": "鄂州市"
+              },
+              {
+                "area_id": 2519,
+                "area_name": "咸宁市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 30,
+        "area_name": "山东省",
+        "parent_area_id": 0,
+        "add_time": 1466565250,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 431,
+            "area_name": "华中",
+            "final": [
+              {
+                "area_id": 2554,
+                "area_name": "铜川市"
+              },
+              {
+                "area_id": 3445,
+                "area_name": "十堰市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 31,
+        "area_name": "台湾",
+        "parent_area_id": 0,
+        "add_time": 1466565251,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 456,
+            "area_name": "西南",
+            "final": [
+              {
+                "area_id": 4689,
+                "area_name": "丽江市"
+              },
+              {
+                "area_id": 2234,
+                "area_name": "九江市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 32,
+        "area_name": "福建省",
+        "parent_area_id": 0,
+        "add_time": 1466565252,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 306,
+            "area_name": "西南",
+            "final": [
+              {
+                "area_id": 3992,
+                "area_name": "台中市"
+              },
+              {
+                "area_id": 2390,
+                "area_name": "株洲市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 33,
+        "area_name": "内蒙古自治区",
+        "parent_area_id": 0,
+        "add_time": 1466565253,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 340,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 4478,
+                "area_name": "莱芜市"
+              },
+              {
+                "area_id": 4389,
+                "area_name": "中卫市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 34,
+        "area_name": "宁夏回族自治区",
+        "parent_area_id": 0,
+        "add_time": 1466565254,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 252,
+            "area_name": "华北",
+            "final": [
+              {
+                "area_id": 4468,
+                "area_name": "上海市"
+              },
+              {
+                "area_id": 2068,
+                "area_name": "重庆市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 35,
+        "area_name": "陕西省",
+        "parent_area_id": 0,
+        "add_time": 1466565255,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 292,
+            "area_name": "东北",
+            "final": [
+              {
+                "area_id": 3722,
+                "area_name": "梅州市"
+              },
+              {
+                "area_id": 4964,
+                "area_name": "上海市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 36,
+        "area_name": "上海",
+        "parent_area_id": 0,
+        "add_time": 1466565256,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 241,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 2249,
+                "area_name": "重庆市"
+              },
+              {
+                "area_id": 4506,
+                "area_name": "安康市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 37,
+        "area_name": "西藏自治区",
+        "parent_area_id": 0,
+        "add_time": 1466565257,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 379,
+            "area_name": "华东",
+            "final": [
+              {
+                "area_id": 2564,
+                "area_name": "黔东南苗族侗族自治州"
+              },
+              {
+                "area_id": 2924,
+                "area_name": "六盘水市"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "area_id": 38,
+        "area_name": "福建省",
+        "parent_area_id": 0,
+        "add_time": 1466565258,
+        "first_letter": "H",
+        "area_number": 0,
+        "hot_city": 1,
+        "is_store_phone": 1,
+        "area_num": 5,
+        "is_hot": 1,
+        "city_domain": "ha",
+        "hot_search": "",
+        "city_code": 410000,
+        "city_lng": 0,
+        "city_lat": 0,
+        "add_timestamp_bi": "2019-08-16 00:26:54",
+        "update_timestamp_bi": "2019-08-16 00:26:54",
+        "urban": [
+          {
+            "area_id": 364,
+            "area_name": "华南",
+            "final": [
+              {
+                "area_id": 3395,
+                "area_name": "运城市"
+              },
+              {
+                "area_id": 2756,
+                "area_name": "六盘水市"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+    }
+    getRegion()
+
+</script>
+<body style="min-height:100vh;border: 5px solid;">
+    
+    <button onclick="handleClick()">你点我呀~！</button>
+</body>
+</html>
