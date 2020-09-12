@@ -1,7 +1,15 @@
+/**
+ * todo:
+ *  1. 可控省市区几级联动
+ *  2. 保存取值 --- 省市区 (当市全选时之前选择部分的区域是全部移除仅保留父级市，还是补全区域id为当前市级下所有?)
+ *  3. 回显数据
+ */
+
 // dialog 默认配置
 var defaultConfig = {
     showTitle: false, // 是否展示dialog标题
     title: '这是标题', // dialog标题文案
+    showFooter: true, // 是否展示底部按钮
     lockScroll: true, // 是否锁定滚动
     closeOnClickModal: true, // 点击模态框是否可关闭dialog
     showCheckAll: true, // 是否显示全选
@@ -11,8 +19,10 @@ var defaultConfig = {
 var dialogConfig = {}
 
 var dialog = {
-    // 公用变量 | 当前展开区域数据
-    current_area_list: [],
+    current_area_list: [], // 公用变量 | 当前展开区域数据
+    selectedProvinceList: [], // 省
+    selectedCityList: [], // 市
+    selectedAreaList: [], // 区
 
     // 展示dialog
     show: function(opt) {
@@ -36,6 +46,10 @@ var dialog = {
             var titleHtml = '<div class="dialog-title">'+ dialogConfig.title +'</div>'
         }
 
+        var content = document.createElement('div')
+        $(content).addClass('dialog-content')
+        
+
         // 全选
         if (dialogConfig.showCheckAll) {
             var ckAllWrap = document.createElement('div')
@@ -45,6 +59,8 @@ var dialog = {
                 // todo 半选？ 存在兼容性问题!
                 // $('.p_item_ckbox').prop('indeterminate', !getCKAllStatus('.p_item_ckbox'))
                 $('.p_item_ckbox').prop('checked', !getCKAllStatus('.p_item_ckbox'))
+                $('.c_item_ckbox').prop('checked', getCKAllStatus('.p_item_ckbox'))
+                $('.a_item_ckbox').prop('checked', getCKAllStatus('.p_item_ckbox'))
             }).append(ckAllHtml)
         }
         
@@ -52,13 +68,25 @@ var dialog = {
         var dg = document.createElement('div')
         $(dg).attr('id', 'dialog-area');
         dialogConfig.showTitle && $(dg).append(titleHtml)
-        dialogConfig.showCheckAll && $(dg).append(ckAllWrap)
+        dialogConfig.showCheckAll && $(content).append(ckAllWrap)
 
         // 省
         p_expand() // 绑定省份icon点击事件
         c_expand() // 绑定城市icon点击事件
         var province = dialog.initProvince()
-        $(dg).append(province)
+        $(content).append(province)
+
+
+        $(dg).append(content)
+
+        // 尾部
+        if (dialogConfig.showFooter) {
+            var dialogFooter = '<div class="dialog-footer">'+
+            '<a href="javascript:;" onClick="dialog.confirm">确定</a>'+
+            '<a href="javascript:;" onClick="dialog.hide()">取消</a>'+
+            '</div>'
+            $(dg).append(dialogFooter)
+        }
 
 
         $(dg).css({'display':'none'})
@@ -72,6 +100,13 @@ var dialog = {
         $('#dialog-area').hide().remove()
         $('#dialog-mask').hide().remove()
         dialogConfig.lockScroll && $(document.body).css({'overflow': 'visible'})
+    },
+
+    // 确定
+    confirm: function(){
+        console.log('省：', dialog.selectedProvinceList)
+        console.log('市：', dialog.selectedCityList)
+        console.log('区：', dialog.selectedAreaList)
     },
 
     // 省
@@ -223,7 +258,7 @@ function cityExpand(id){
     setTimeout(function(){
         $(selector).find('.city_expand').append(a_item)
         // 若当前城市为选择状态，则子集中的 区域 皆选中     todo 数据回显+半选
-        // $(selector).find('.city_expand .a_item_ckbox').prop('checked', $(selector).find('.c_item_ckbox').prop('checked'))
+        $(selector).find('.city_expand .a_item_ckbox').prop('checked', $(selector).find('.c_item_ckbox').prop('checked'))
     })
 }
 
@@ -296,6 +331,17 @@ function getCKAllStatus(selector){
 function checkedProvince(id) {
     var selector = ".p_item[data-province_id='" + id + "']"
 
+    // todo 查找方法待优化
+    var allData = dialogConfig.regionData || []
+    var childCitys = []
+    for (var index = 0; index < allData.length; index++) {
+        if(allData[index].area_id == id) {
+            childCitys = allData[index].urban
+            break
+        }
+    }
+    console.log('Current selected province: ', id, $(selector).find('.p_item_ckbox').prop('checked'), childCitys);
+
     // 监测 省份 是否全选
     $('.dialog-check-all').prop('checked', getCKAllStatus('.p_item_ckbox'))
 
@@ -310,6 +356,10 @@ function checkedProvince(id) {
 // 选中城市
 function checkedCity(id) {
     var selector = ".c_item[data-city_id='" + id + "']"
+    dialog.current_area_list = []
+    findAreaById(dialogConfig.regionData, id)
+    console.log('Current selected city: ', id, $(selector).find('.c_item_ckbox').prop('checked'), dialog.current_area_list);
+
 
     // 监测当前展开 省份 中的 城市 是否全选
     $(selector).parent('.province_expand').siblings('.p_item_ckbox').prop('checked', getCKAllStatus(selector + ' .c_item_ckbox'))
@@ -324,6 +374,8 @@ function checkedCity(id) {
 // 选中区域
 function checkedArea(id) {
     var selector = ".a_item[data-area_id='" + id + "']"
+
+    console.log('Current selected area: ', id, $(selector).find('.a_item_ckbox').prop('checked'));
 
     // 监测当前展开 城市 中的 区域 是否全选
     var c_item_id = $(selector).parents('.c_item').attr('data-city_id')
